@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
     // テーマ切り替え機能
     const themeToggle = document.getElementById('themeToggle');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
@@ -40,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+=======
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     // 要素を取得
     const timeDisplay = document.getElementById('time');
     const startBtn = document.getElementById('startBtn');
@@ -73,12 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
             isPaused = false;
             startBtn.disabled = true;
             pauseBtn.disabled = false;
+<<<<<<< HEAD
             resetBtn.disabled = true;
             
             // アニメーションを追加
             timeDisplay.classList.add('animate__pulse');
             timeDisplay.style.animationDuration = '2s';
             
+=======
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
             timerId = setInterval(updateTimer, 1000);
         }
     }
@@ -89,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isPaused = true;
             startBtn.disabled = false;
             pauseBtn.disabled = true;
+<<<<<<< HEAD
             resetBtn.disabled = false;
             clearInterval(timerId);
             
@@ -97,6 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
             void timeDisplay.offsetWidth; // リフローを強制
             timeDisplay.classList.add('animate__pulse');
             timeDisplay.style.animationPlayState = 'paused';
+=======
+            clearInterval(timerId);
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
         }
     }
     
@@ -106,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isWorkTime = true;
         updateDurations();
         statusText.textContent = '作業時間';
+<<<<<<< HEAD
         statusText.classList.remove('status-break');
         statusText.classList.add('status-work');
         
@@ -113,6 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         timeDisplay.classList.remove('animate__pulse');
         timeDisplay.style.animationPlayState = 'running';
         
+=======
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
         updateDisplay();
     }
     
@@ -154,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const seconds = timeLeft % 60;
         timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         
+<<<<<<< HEAD
         // 作業時間と休憩時間で色とスタイルを変更
         if (isWorkTime) {
             document.documentElement.style.setProperty('--primary-color', '#6a11cb');
@@ -165,6 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.style.setProperty('--secondary-color', '#ff8a5c');
             statusText.classList.remove('status-work');
             statusText.classList.add('status-break');
+=======
+        // 作業時間と休憩時間で色を変更
+        if (isWorkTime) {
+            document.documentElement.style.setProperty('--primary-color', '#ff6b6b'); // 赤系
+        } else {
+            document.documentElement.style.setProperty('--primary-color', '#4ecdc4'); // 青緑系
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
         }
     }
     
@@ -180,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 通知音を再生する関数
     function playNotificationSound() {
+<<<<<<< HEAD
         try {
             // ブラウザのオーディオコンテキストを作成
             const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -218,5 +240,30 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) {
             console.error('音声の再生に失敗しました:', e);
         }
+=======
+        // ブラウザのオーディオコンテキストを作成
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+        
+        // オシレーターノードを作成
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        // オシレーターの設定
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(880, audioContext.currentTime); // ラの音
+        gainNode.gain.setValueAtTime(1, audioContext.currentTime);
+        
+        // エンベロープ設定（音の立ち上がりと減衰）
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        
+        // ノードを接続
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        // 音を鳴らす
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.5);
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     }
 });

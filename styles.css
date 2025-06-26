@@ -1,4 +1,5 @@
 :root {
+<<<<<<< HEAD
     --primary-color: #6a11cb;
     --secondary-color: #2575fc;
     --accent-color: #ff4d4d;
@@ -8,6 +9,13 @@
     --card-bg: rgba(255, 255, 255, 0.9);
     --text-primary: #2d3436;
     --text-secondary: #636e72;
+=======
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --dark-color: #2d3436;
+    --light-color: #f7f7f7;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
 }
 
 * {
@@ -17,15 +25,22 @@
 }
 
 body {
+<<<<<<< HEAD
     font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: var(--text-primary);
+=======
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f5f6fa;
+    color: var(--dark-color);
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     line-height: 1.6;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+<<<<<<< HEAD
     margin: 0;
     transition: background 0.5s ease;
 }
@@ -141,6 +156,31 @@ h1 {
     0% { transform: scale(1); }
     50% { transform: scale(1.02); }
     100% { transform: scale(1); }
+=======
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+}
+
+.timer-display {
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
 }
 
 .controls {
@@ -151,6 +191,7 @@ h1 {
 }
 
 .btn {
+<<<<<<< HEAD
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
@@ -196,11 +237,36 @@ h1 {
 .btn:disabled {
     background: #e0e0e0;
     color: #9e9e9e;
+=======
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    background-color: #95a5a6;
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
 }
 
+<<<<<<< HEAD
 .btn:disabled::before {
     display: none;
 }
@@ -225,11 +291,17 @@ h1 {
 .session-info span {
     font-weight: 600;
     color: var(--primary-color);
+=======
+.session-info {
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
 }
 
 .settings {
     margin-top: 2rem;
     text-align: left;
+<<<<<<< HEAD
     background: rgba(255, 255, 255, 0.6);
     padding: 1.8rem;
     border-radius: 15px;
@@ -237,6 +309,11 @@ h1 {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+=======
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
 }
 
 .setting {
@@ -255,6 +332,7 @@ label {
 
 input[type="number"] {
     width: 100%;
+<<<<<<< HEAD
     padding: 0.8rem 1rem;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
@@ -307,11 +385,18 @@ input[type="number"]:focus {
 
 .container {
     animation: fadeIn 0.6s ease-out forwards;
+=======
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
     .container {
+<<<<<<< HEAD
         padding: 1.8rem 1.5rem;
         margin: 1rem;
         border-radius: 15px;
@@ -324,16 +409,27 @@ input[type="number"]:focus {
     .timer-display {
         font-size: 4.5rem;
         margin: 1.2rem 0;
+=======
+        padding: 1.5rem;
+    }
+    
+    .timer-display {
+        font-size: 4rem;
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     }
     
     .controls {
         flex-direction: column;
         align-items: center;
+<<<<<<< HEAD
         gap: 0.8rem;
+=======
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     }
     
     .btn {
         width: 100%;
+<<<<<<< HEAD
         max-width: 220px;
         padding: 0.8rem;
     }
@@ -417,5 +513,8 @@ input[type="number"]:focus {
     
     .session-info {
         background: rgba(50, 50, 50, 0.6);
+=======
+        max-width: 200px;
+>>>>>>> 91c003b10cf678c9228a546e18838fbcc07fb08e
     }
 }
