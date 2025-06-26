@@ -8,6 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.getElementById('status');
     const workDurationInput = document.getElementById('workDuration');
     const breakDurationInput = document.getElementById('breakDuration');
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // テーマの初期設定
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // テーマ切り替えイベントリスナー
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+    
+    // システムのテーマ変更を検知
+    prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) { // ユーザーが手動でテーマを設定していない場合のみ
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+    });
     
     // 変数の初期化
     let timeLeft = 25 * 60; // 25分を秒で表現
