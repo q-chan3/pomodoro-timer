@@ -1,0 +1,421 @@
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --accent-color: #ff4d4d;
+    --dark-color: #2d3436;
+    --light-color: #f8f9fa;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+    transition: background 0.5s ease;
+}
+
+/* テーマ切り替えのトランジション */
+.theme-transition,
+.theme-transition * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* テーマトグルボタン */
+.theme-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(30deg);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95) rotate(30deg);
+}
+
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+/* ダークモード時に太陽アイコンを非表示 */
+[data-theme="dark"] .sun-icon {
+    display: none;
+}
+
+/* ライトモード時に月アイコンを非表示 */
+:not([data-theme="dark"]) .moon-icon {
+    display: none;
+}
+
+.container {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    z-index: 2;
+}
+
+h1 {
+    color: var(--text-primary);
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.timer-display {
+    font-size: 5.5rem;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    font-family: 'Rajdhani', 'Noto Sans JP', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover::before {
+    opacity: 1;
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:disabled {
+    background: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn:disabled::before {
+    display: none;
+}
+
+.session-info {
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.session-info p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.session-info span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.settings {
+    margin-top: 2rem;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 1.8rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.setting {
+    margin-bottom: 1rem;
+}
+
+.setting:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+}
+
+/* レスポンシブデザイン */
+/* 通知エフェクト */
+.notification-effect {
+    animation: notificationPulse 0.8s ease-out;
+}
+
+@keyframes notificationPulse {
+    0% { background-color: rgba(255, 255, 255, 0.1); }
+    50% { background-color: rgba(255, 255, 255, 0.3); }
+    100% { background-color: transparent; }
+}
+
+/* ステータス表示のスタイル */
+#status {
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.status-work {
+    color: #6a11cb;
+    background-color: rgba(106, 17, 203, 0.1);
+}
+
+.status-break {
+    color: #ff4d4d;
+    background-color: rgba(255, 77, 77, 0.1);
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 600px) {
+    .container {
+        padding: 1.8rem 1.5rem;
+        margin: 1rem;
+        border-radius: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .timer-display {
+        font-size: 4.5rem;
+        margin: 1.2rem 0;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 220px;
+        padding: 0.8rem;
+    }
+    
+    .session-info {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .settings {
+        padding: 1.5rem 1.2rem;
+    }
+}
+
+/* ダークモード時のアニメーション調整 */
+[data-theme="dark"] .animate__fadeIn,
+[data-theme="dark"] .animate__fadeInUp {
+    animation-fill-mode: both;
+}
+
+/* ダークモードスタイル */
+[data-theme="dark"],
+[data-theme="dark"] body,
+[data-theme="dark"] .container {
+    --card-bg: rgba(30, 30, 30, 0.9);
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #121212 0%, #1e3c72 100%);
+}
+
+[data-theme="dark"] input[type="number"] {
+    background: rgba(50, 50, 50, 0.8);
+    border-color: #444;
+    color: #fff;
+}
+
+[data-theme="dark"] .settings {
+    background: rgba(50, 50, 50, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .session-info {
+    background: rgba(50, 50, 50, 0.6);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* システムのダークモード設定をフォールバックとして使用 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --card-bg: rgba(45, 45, 45, 0.8);
+        --text-primary: #ffffff;
+        --text-secondary: #e0e0e0;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+    }
+    
+    input[type="number"] {
+        background: rgba(30, 30, 30, 0.8);
+        border-color: #444;
+        color: #fff;
+    }
+    
+    .settings {
+        background: rgba(50, 50, 50, 0.6);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .session-info {
+        background: rgba(50, 50, 50, 0.6);
+    }
+}
